@@ -20,17 +20,20 @@ if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.blueprint_login_views = {
-    'admin': '/admin-view',
     'users': '/login',
+    'admin': '/admin-view',
+    'staff': '/staff-login'
 }
 
 ##############################BLUEPRINTS################################
 from project.core.views import core_blueprint
 from project.users.views import users_blueprint
 from project.admin.views import admin_blueprint
+from project.staff.views import staff_blueprint
 from project.error_pages.handler import error_page_blueprint
 
 app.register_blueprint(core_blueprint)
 app.register_blueprint(admin_blueprint)
 app.register_blueprint(users_blueprint)
+app.register_blueprint(staff_blueprint)
 app.register_blueprint(error_page_blueprint)

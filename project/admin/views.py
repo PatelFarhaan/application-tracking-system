@@ -1,6 +1,8 @@
+import datetime
+from project import db
 from project.models import Users, Employee
-from werkzeug.security import check_password_hash
 from flask_login import login_required, login_user, logout_user
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask import render_template, request, Blueprint, redirect, url_for, session
 
 
@@ -32,7 +34,52 @@ def login():
 
 
 @admin_blueprint.route('/create-rc-hr-accounts', methods=['GET', 'POST'])
+@login_required
 def create_rc_hr_accounts():
     if request.method == 'POST':
-        pass
+        name = request.form.get('username', None)
+        email = request.form.get('username', None)
+        password = request.form.get('username', None)
+        repeat_password = request.form.get('username', None)
+
+        if name == None:
+            return render_template('hr_recruiter_account_create.html', warning='Username cannot be None')
+
+        if email == None:
+            return render_template('hr_recruiter_account_create.html', warning='Email cannot be None')
+
+        if password == None:
+            return render_template('hr_recruiter_account_create.html', warning='Password cannot be None')
+
+        if repeat_password == None:
+            return render_template('hr_recruiter_account_create.html', warning='Repeat Password cannot be None')
+
+        if password != repeat_password:
+            return render_template('hr_recruiter_account_create.html', warning='Both passwords should be same')
+
+        new_emp_obj = Employee(name=name,
+                               dept_id=1,
+                               email=email,
+                               salary=10000,
+                               status='Active',
+                               hire_date=datetime.datetime.utcnow())
+        db.session.add(new_emp_obj)
+        db.session.commit()
+
+        emp_obj = Employee.query.filter_by(email=email).first()
+        emp_user_obj = Users(dept_id=1,
+                             emp_id=emp_obj.id,
+                             type='Hiring Manager',
+                             hashed_password=generate_password_hash(password))
+        db.session.add(emp_user_obj)
+        db.session.commit()
+        return render_template('hr_recruiter_account_create.html', success='Employee created successfully.')
     return render_template('hr_recruiter_account_create.html')
+
+
+@admin_blueprint.route('/admin-logout', methods=['GET'])
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    return redirect(url_for('users.login'))
