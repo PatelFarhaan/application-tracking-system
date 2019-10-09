@@ -21,6 +21,9 @@
   </h2>
   <br>
   <br>
+  {% if department_list == [] %}
+    <h3>PLEASE FIRST ADD DEPARTMENT FOR POSTING JOBS</h3>
+    {% else %}
   <form method="POST">
 
     <div class="form-group">
@@ -45,7 +48,19 @@
       <input type="password" class="form-control" name="repeat_password" placeholder="Repeat Password">
     </div>
 
+    <div class="form-group">
+        <label for="exampleInputEmail1">Department</label>
+        <div class="dropdown">
+            <select class="form-control" id="rating" name="department">
+                {% for i in department_list %}
+                <option value={{i}}>{{i}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  {% endif %}
 </div>
 {% endblock %}

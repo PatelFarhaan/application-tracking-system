@@ -114,7 +114,7 @@ class Application(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     appl_date = db.Column(db.DateTime)
-    status = db.Column(db.String(64), nullable=False)
+    status = db.Column(db.String(64), nullable=False, default='Applied')
     job_id = db.Column(db.Integer, db.ForeignKey('job.id'), nullable=False)
     app_id = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
 ########################################################################################################################
