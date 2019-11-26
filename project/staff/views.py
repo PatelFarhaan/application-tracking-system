@@ -1,3 +1,4 @@
+import json
 import datetime
 from project import db
 from werkzeug.security import check_password_hash
@@ -51,17 +52,17 @@ def staff_jobs_view_create():
             user_obj = Applicant.query.filter_by(id=applicant_id).first()
             resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
             temp_dict = {}
-            temp_dict['job_id'] = job_id
-            temp_dict['job_title'] = job_obj.title
-            temp_dict['user_name'] = user_obj.name
-            temp_dict['applicant_id'] = applicant_id
-            temp_dict['user_resume'] = resume_obj.resume
-            temp_dict['applied_date'] = application['appl_date']
+            temp_dict["job_id"] = job_id
+            temp_dict["job_title"] = job_obj.title
+            temp_dict["user_name"] = user_obj.name
+            temp_dict["applicant_id"] = applicant_id
+            temp_dict["user_resume"] = resume_obj.resume
+            temp_dict["status"] = application["status"]
+            temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_date"], '%d %b %Y')
             final_display_list.append(temp_dict)
 
     if request.method == 'POST':
         form = request.form.get('action', None)
-        print("action is", form)
         if form == 'create_job':
             status = request.form.get('status', None)
             desc = request.form.get('job_desc', None)
@@ -101,9 +102,31 @@ def staff_jobs_view_create():
             db.session.commit()
             return redirect(url_for('staff.staff_jobs_view_create'))
         else:
-            result = request.form.get('action')
-            print(type(result))
-            application_obj = Application.query.filter_by().all()
+            if request.method == 'POST':
+                res = request.form.to_dict()
+                res = res["action"].replace("'", '"')
+                ap = res[1:-8]
+                action = res[-6:-1]
+                res = json.loads(ap)
+
+                print(action)
+
+                if action == '"rev"':
+                    department_list, final_display_list = commonSaveLogic("Reviewed", res)
+
+                if action == '"rej"':
+                    department_list, final_display_list = commonSaveLogic("Rejected", res)
+
+                if action == '"int"':
+                    department_list, final_display_list = commonSaveLogic("Interviewed", res)
+
+                if action == '"off"':
+                    department_list, final_display_list = commonSaveLogic("Offer", res)
+
+                if action == '"hir"':
+                    rejectOtherCandidates(res['job_id'], res['applicant_id'])
+                    department_list, final_display_list = commonSaveLogic("Hired", res)
+
 
     return render_template('staff_jobs_view_create.html',
                            department_list=department_list,
@@ -116,3 +139,45 @@ def logout():
     logout_user()
     session.clear()
     return redirect(url_for('users.login'))
+
+
+def commonSaveLogic(new, res):
+    status_change_obj = Application.query.filter_by(job_id=res['job_id'], app_id=res['applicant_id']).first()
+    status_change_obj.status = new
+    db.session.commit()
+    dept_names = Department.query.all()
+    department_list = [x.name for x in dept_names]
+
+    final_display_list = []
+    all_application_obj = Application.query.all()
+
+    if all_application_obj != []:
+        for application in all_application_obj:
+            application = application.__dict__
+            job_id = application['job_id']
+            applicant_id = application['app_id']
+            job_obj = Job.query.filter_by(id=job_id).first()
+            user_obj = Applicant.query.filter_by(id=applicant_id).first()
+            resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
+            temp_dict = {}
+            temp_dict["job_id"] = job_id
+            temp_dict["job_title"] = job_obj.title
+            temp_dict["user_name"] = user_obj.name
+            temp_dict["applicant_id"] = applicant_id
+            temp_dict["user_resume"] = resume_obj.resume
+            temp_dict["status"] = application["status"]
+            temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_date"], '%d %b %Y')
+            final_display_list.append(temp_dict)
+
+    return department_list, final_display_list
+
+
+def rejectOtherCandidates(job_id, applicant_id):
+    filter_list = Application.query.filter_by(job_id=job_id).all()
+    filter_list = list(i.__dict__ for i in filter_list if i.__dict__['app_id'] != applicant_id)
+    for j in filter_list:
+        app_id = j['app_id']
+        job_id = j['job_id']
+        app_status_obj = Application.query.filter_by(app_id=app_id, job_id=job_id).first()
+        app_status_obj.status = 'Rejected'
+        db.session.commit()

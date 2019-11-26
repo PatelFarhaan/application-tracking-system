@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+
 {% if warning %}
 <div class="alert alert-warning" role="alert">
     {{warning}}
@@ -120,32 +121,34 @@
                 <th style="text-align:center" scope="col">Resume</th>
                 <th style="text-align:center" scope="col">Applied Date</th>
                 <th style="text-align:center" scope="col">Application Action</th>
+                <th style="text-align:center" scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             {% for items in final_display_list %}
             <tr>
-                <td style="text-align:center">{{ items['job_title'] }}</td>
-                <td style="text-align:center">{{ items['user_name'] }}</td>
-                <td style="text-align:center"><a href="{{ items['user_resume'] }}"
-                        download>{{ items['user_resume'][50:] }}</a></td>
-                <td style="text-align:center">{{ items['applied_date'] }}</td>
+                <td style="text-align:center">{{ items["job_title"] }}</td>
+                <td style="text-align:center">{{ items["user_name"] }}</td>
+                <td style="text-align:center"><a href='{{ items["user_resume"] }}'
+                        download>{{ items["user_resume"][50:] }}</a></td>
+                <td style="text-align:center">{{ items["applied_date"] }}</td>
                 <td style="text-align:center">
                     <form method="POST">
                         <div class="dropdown">
                             <select class="form-control" name="action"
-                                onchange="if(confirm('Are you sure? The Applicant would be informed about this action.')){this.form.submit()}">
+                                onchange="if(confirm('Are you sure? The Applicant would be informed about this action.')){this.form.value='asdasd'}{this.form.submit()}">
                                 <option value="Applied">Applied</option>
-                                <option value="{{ items }}">Reviewed</option>
-                                <option value="Reject">Reject</option>
-                                <option value="Interview">Interview</option>
-                                <option value="Offer">Offer</option>
-                                <option value="Hireds">Hired</option>
+                                <option value="{{ items,'rev' }}">Reviewed</option>
+                                <option value="{{ items,'rej' }}">Reject</option>
+                                <option value="{{ items,'int' }}">Interview</option>
+                                <option value="{{ items,'off' }}">Offer</option>
+                                <option value="{{ items,'hir' }}">Hired</option>
                             </select>
                         </div>
                     </form>
 
                 </td>
+                <td style="text-align:center">{{ items["status"] }}</td>
             </tr>
             {% endfor %}
         </tbody>

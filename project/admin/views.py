@@ -41,9 +41,9 @@ def create_rc_hr_accounts():
 
     if request.method == 'POST':
         name = request.form.get('username', None)
-        email = request.form.get('username', None)
-        password = request.form.get('username', None)
-        repeat_password = request.form.get('username', None)
+        email = request.form.get('email', None)
+        password = request.form.get('password', None)
+        repeat_password = request.form.get('repeat_password', None)
         department = request.form.get('department', None)
 
         dept_obj = Department.query.filter_by(name=department).first()
@@ -79,7 +79,7 @@ def create_rc_hr_accounts():
                              hashed_password=generate_password_hash(password))
         db.session.add(emp_user_obj)
         db.session.commit()
-        return render_template('hr_recruiter_account_create.html', success='Employee created successfully.')
+        return redirect(url_for('admin.create_rc_hr_accounts'))
     return render_template('hr_recruiter_account_create.html',department_list=department_list)
 
 

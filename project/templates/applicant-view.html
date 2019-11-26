@@ -36,7 +36,7 @@
         <td style="text-align:center">{{ job.max_salary }}</td>
         <td style="text-align:center">{{ job.location }}</td>
         {% if job.id in job_id_list %}
-        <td style="text-align:center">Applied</td>
+        <td style="text-align:center">{{ job_id_list[job.id] }}</td>
         {% else %}
         <td>
           <form method="POST" align="center">

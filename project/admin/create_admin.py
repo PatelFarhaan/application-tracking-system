@@ -9,7 +9,9 @@ from project.models import Users, Department, Employee
 
 ########################################################################################################################
 dept_obj = Department(name='Engineering')
+dept_obj1 = Department(name='Finance')
 db.session.add(dept_obj)
+db.session.add(dept_obj1)
 db.session.commit()
 
 ########################################################################################################################
