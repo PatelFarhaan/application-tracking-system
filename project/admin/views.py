@@ -1,5 +1,5 @@
 import datetime
-from project import db
+from project import db, app
 from project.models import Users, Employee, Department
 from flask_login import login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -7,6 +7,7 @@ from flask import render_template, request, Blueprint, redirect, url_for, sessio
 
 
 admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
+
 
 
 @admin_blueprint.route('/admin-view', methods=['GET', 'POST'])

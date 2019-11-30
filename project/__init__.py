@@ -8,7 +8,7 @@ from sqlalchemy_utils import create_database, database_exists
 ##########################DATABASE##################################
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '***REMOVED***'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:***REMOVED***@localhost/tracking_system'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:***REMOVED***@localhost/tracking_system'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 db = SQLAlchemy(app)
@@ -24,6 +24,9 @@ login_manager.blueprint_login_views = {
     'admin': '/admin-view',
     'staff': '/staff-login'
 }
+
+
+app.logger.info("asd")
 
 ##############################BLUEPRINTS################################
 from project.core.views import core_blueprint
