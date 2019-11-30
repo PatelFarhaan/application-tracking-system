@@ -173,11 +173,14 @@ def commonSaveLogic(new, res):
 
 
 def rejectOtherCandidates(job_id, applicant_id):
-    filter_list = Application.query.filter_by(job_id=job_id).all()
-    filter_list = list(i.__dict__ for i in filter_list if i.__dict__['app_id'] != applicant_id)
-    for j in filter_list:
-        app_id = j['app_id']
-        job_id = j['job_id']
-        app_status_obj = Application.query.filter_by(app_id=app_id, job_id=job_id).first()
-        app_status_obj.status = 'Rejected'
-        db.session.commit()
+    try:
+        filter_list = Application.query.filter_by(job_id=job_id).all()
+        filter_list = list(i.__dict__ for i in filter_list if i.__dict__['app_id'] != applicant_id)
+        for j in filter_list:
+            app_id = j['app_id']
+            job_id = j['job_id']
+            app_status_obj = Application.query.filter_by(app_id=app_id, job_id=job_id).first()
+            app_status_obj.status = 'Rejected'
+            db.session.commit()
+    except:
+        db.session.rollback()
