@@ -12,8 +12,6 @@ admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
 
 @admin_blueprint.route('/admin-view', methods=['GET', 'POST'])
 def login():
-    # print("###################################################################################################")
-
     session.clear()
     if request.method == 'POST':
         admin_email = request.form.get('admin_email', None)
@@ -39,8 +37,6 @@ def login():
 @admin_blueprint.route('/create-rc-hr-accounts', methods=['GET', 'POST'])
 @login_required
 def create_rc_hr_accounts():
-    # print("###################################################################################################")
-    print(current_user)
     dept_names = Department.query.all()
     department_list = [x.name for x in dept_names]
 
@@ -89,7 +85,6 @@ def create_rc_hr_accounts():
         db.session.add(emp_user_obj)
         db.session.commit()
         return redirect(url_for('admin.create_rc_hr_accounts'))
-    print(current_user)
     return render_template('hr_recruiter_account_create.html',department_list=department_list)
 
 

@@ -2,7 +2,7 @@ import json
 import datetime
 from project import db
 from werkzeug.security import check_password_hash
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 from flask import render_template, request, Blueprint, redirect, url_for, session
 from project.models import Users, Employee, Job, Department, Application,Applicant, Resume
 
@@ -32,47 +32,70 @@ def login():
 
         staff_users_obj = Users.query.filter_by(emp_id=staff_obj.id).first()
         if staff_obj is not None and check_password_hash(staff_users_obj.hashed_password, staff_password):
-            _type = staff_users_obj.type
-            # print("###################################################################################################")
-            # print(type)
-            # print("###################################################################################################")
-            if _type == 'Hiring Manager':
-                pass
-            elif _type == 'Recruiter':
-                return redirect(url_for('staff.staff_jobs_view_create'))
+            login_user(staff_obj)
+            return redirect(url_for('staff.staff_jobs_view_create'))
     return render_template('staff_login.html')
 
 
-@staff_blueprint.route('/staff-jobs-view-create/', methods=['GET', 'POST'])
+@staff_blueprint.route('/staff-jobs-view-create', methods=['GET', 'POST'])
 @login_required
 def staff_jobs_view_create():
-    # print("###################################################################################################")
-    # print("type is coming in this :")
-    # print("###################################################################################################")
+    current_emp_obj = Employee.query.filter_by(email=current_user.__dict__['email']).first()
+    current_user_obj = Users.query.filter_by(emp_id=current_emp_obj.id).first()
+    isRecruiter = current_user_obj.type
 
     dept_names = Department.query.all()
     department_list = [x.name for x in dept_names]
 
-    final_display_list = []
-    all_application_obj = Application.query.all()
+    if isRecruiter == 'Recruiter':
+        final_display_list = []
+        all_application_obj = Application.query.all()
 
-    if all_application_obj != []:
-        for application in all_application_obj:
-            application = application.__dict__
-            job_id = application['job_id']
-            applicant_id = application['app_id']
-            job_obj = Job.query.filter_by(id=job_id).first()
-            user_obj = Applicant.query.filter_by(id=applicant_id).first()
-            resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
-            temp_dict = {}
-            temp_dict["job_id"] = job_id
-            temp_dict["job_title"] = job_obj.title
-            temp_dict["user_name"] = user_obj.name
-            temp_dict["applicant_id"] = applicant_id
-            temp_dict["user_resume"] = resume_obj.resume
-            temp_dict["status"] = application["status"]
-            temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_date"], '%d %b %Y')
-            final_display_list.append(temp_dict)
+        if all_application_obj != []:
+            for application in all_application_obj:
+                application = application.__dict__
+                job_id = application['job_id']
+                applicant_id = application['app_id']
+                job_obj = Job.query.filter_by(id=job_id).first()
+                user_obj = Applicant.query.filter_by(id=applicant_id).first()
+                resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
+                temp_dict = {}
+                temp_dict["job_id"] = job_id
+                temp_dict["job_title"] = job_obj.title
+                temp_dict["user_name"] = user_obj.name
+                temp_dict["applicant_id"] = applicant_id
+                temp_dict["user_resume"] = resume_obj.resume
+                temp_dict["status"] = application["status"]
+                temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_date"], '%d %b %Y')
+                final_display_list.append(temp_dict)
+
+
+    elif isRecruiter == 'Hiring Manager':
+        final_display_list = []
+        all_application_obj = Application.query.all()
+
+        list_of_jobs = Job.query.filter_by(dept_id=current_user_obj.dept_id).all()
+
+        if all_application_obj != []:
+            for application in all_application_obj:
+                application = application.__dict__
+                job_id = application['job_id']
+                applicant_id = application['app_id']
+
+                for jobs in list_of_jobs:
+                    if jobs.id == job_id:
+                        user_obj = Applicant.query.filter_by(id=applicant_id).first()
+                        resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
+                        temp_dict = {}
+                        temp_dict["job_id"] = job_id
+                        temp_dict["job_title"] = jobs.title
+                        temp_dict["user_name"] = user_obj.name
+                        temp_dict["applicant_id"] = applicant_id
+                        temp_dict["user_resume"] = resume_obj.resume
+                        temp_dict["status"] = application["status"]
+                        temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_date"], '%d %b %Y')
+                        final_display_list.append(temp_dict)
+
 
     if request.method == 'POST':
         form = request.form.get('action', None)
