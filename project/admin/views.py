@@ -12,7 +12,7 @@ admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
 
 @admin_blueprint.route('/admin-view', methods=['GET', 'POST'])
 def login():
-    print("###################################################################################################")
+    # print("###################################################################################################")
 
     session.clear()
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def login():
 @admin_blueprint.route('/create-rc-hr-accounts', methods=['GET', 'POST'])
 @login_required
 def create_rc_hr_accounts():
-    print("###################################################################################################")
+    # print("###################################################################################################")
     print(current_user)
     dept_names = Department.query.all()
     department_list = [x.name for x in dept_names]

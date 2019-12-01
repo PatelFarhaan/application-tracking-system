@@ -12,9 +12,9 @@ staff_blueprint = Blueprint('staff', __name__, template_folder='templates')
 
 @staff_blueprint.route('/staff-login', methods=['GET', 'POST'])
 def login():
-    print("asdassad")
-    print("here is login used!!!")
-    print("###########################################################################################################")
+    # print("asdassad")
+    # print("here is login used!!!")
+    # print("###########################################################################################################")
     session.clear()
     if request.method == 'POST':
         staff_email = request.form.get('staff_email', None)
@@ -33,15 +33,12 @@ def login():
         staff_users_obj = Users.query.filter_by(emp_id=staff_obj.id).first()
         if staff_obj is not None and check_password_hash(staff_users_obj.hashed_password, staff_password):
             _type = staff_users_obj.type
-            print("###################################################################################################")
-            print(type)
-            print("###################################################################################################")
+            # print("###################################################################################################")
+            # print(type)
+            # print("###################################################################################################")
             if _type == 'Hiring Manager':
                 pass
             elif _type == 'Recruiter':
-                login_user(staff_obj)
-                print("##############################################################################################")
-
                 return redirect(url_for('staff.staff_jobs_view_create'))
     return render_template('staff_login.html')
 
@@ -49,9 +46,9 @@ def login():
 @staff_blueprint.route('/staff-jobs-view-create/', methods=['GET', 'POST'])
 @login_required
 def staff_jobs_view_create():
-    print("###################################################################################################")
-    print("type is coming in this :")
-    print("###################################################################################################")
+    # print("###################################################################################################")
+    # print("type is coming in this :")
+    # print("###################################################################################################")
 
     dept_names = Department.query.all()
     department_list = [x.name for x in dept_names]
