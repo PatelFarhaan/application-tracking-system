@@ -1,8 +1,8 @@
 import datetime
 from project import db, app
 from project.models import Users, Employee, Department
-from flask_login import login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import login_required, login_user, logout_user, current_user
 from flask import render_template, request, Blueprint, redirect, url_for, session
 
 
@@ -12,6 +12,8 @@ admin_blueprint = Blueprint('admin', __name__, template_folder='templates')
 
 @admin_blueprint.route('/admin-view', methods=['GET', 'POST'])
 def login():
+    print("###################################################################################################")
+
     session.clear()
     if request.method == 'POST':
         admin_email = request.form.get('admin_email', None)
@@ -37,15 +39,18 @@ def login():
 @admin_blueprint.route('/create-rc-hr-accounts', methods=['GET', 'POST'])
 @login_required
 def create_rc_hr_accounts():
+    print("###################################################################################################")
+    print(current_user)
     dept_names = Department.query.all()
     department_list = [x.name for x in dept_names]
 
     if request.method == 'POST':
-        name = request.form.get('username', None)
         email = request.form.get('email', None)
+        name = request.form.get('username', None)
         password = request.form.get('password', None)
-        repeat_password = request.form.get('repeat_password', None)
+        type = request.form.get('gridRadios', None)
         department = request.form.get('department', None)
+        repeat_password = request.form.get('repeat_password', None)
 
         dept_obj = Department.query.filter_by(name=department).first()
 
@@ -54,6 +59,9 @@ def create_rc_hr_accounts():
 
         if email == None:
             return render_template('hr_recruiter_account_create.html', warning='Email cannot be None')
+
+        if type == None:
+            return render_template('hr_recruiter_account_create.html', warning='Type cannot be None')
 
         if password == None:
             return render_template('hr_recruiter_account_create.html', warning='Password cannot be None')
@@ -76,11 +84,12 @@ def create_rc_hr_accounts():
         emp_obj = Employee.query.filter_by(email=email).first()
         emp_user_obj = Users(emp_id=emp_obj.id,
                              dept_id=dept_obj.id,
-                             type='Hiring Manager',
+                             type=type,
                              hashed_password=generate_password_hash(password))
         db.session.add(emp_user_obj)
         db.session.commit()
         return redirect(url_for('admin.create_rc_hr_accounts'))
+    print(current_user)
     return render_template('hr_recruiter_account_create.html',department_list=department_list)
 
 
