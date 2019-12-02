@@ -7,15 +7,15 @@ use ats;
 
 create table department
 	(deptid				INT AUTO_INCREMENT,
-	 name				varchar(64),
+	 name				varchar(1000),
 	 primary key (deptid)
 	);
 	
 create table applicant
 	(app_id			INT AUTO_INCREMENT, 
 	psw				varchar(256) not null,
-	emailid			varchar(64) not null,
-	name			varchar(64) not null,
+	emailid			varchar(1000) not null,
+	name			varchar(1000) not null,
 	gender			varchar(64)
 		check (gender in ('Female', 'Male', 'Unknown')),
 	birth_dt		date,
@@ -26,7 +26,7 @@ create table applicant
 
 create table resume
 	(res_id			INT AUTO_INCREMENT, 
-	 resume			varchar(256), 
+	 resume			varchar(1000), 
 	 app_id		    INT not null,
 	 primary key (res_id),
 	 foreign key (app_id) references applicant(app_id)
@@ -34,12 +34,12 @@ create table resume
 	
 create table employee
 	(emplid			INT AUTO_INCREMENT, 
-	 name			varchar(64) not null, 
+	 name			varchar(1000) not null, 
 	 hire_dt		date,
 	 status			varchar(64) not null
 	 	check (status in ('Active', 'Inactive')),
 	 salary			numeric(8,2) check (salary > 29000),
-	 email			varchar(64),
+	 email			varchar(1000),
 	 deptid			INT, 	 
 	 primary key (emplid),
 	 foreign key (deptid) references department(deptid)
@@ -48,7 +48,7 @@ create table employee
 
 create table users
 	(userid			INT AUTO_INCREMENT, 
-	 psw			varchar(256) not null, 
+	 psw			varchar(1000) not null, 
 	 type			varchar(64)
 	 	check (type in ('Hiring Manager', 'Recruiter', 'Administrator')),
 	 emplid			INT,
@@ -65,11 +65,11 @@ create table job
 	 open_dt		date,
 	 status			varchar(64)
 	 	check (status in ('Open', 'Closed', 'Cancelled')), 
-	 title			varchar(64),
+	 title			varchar(1000),
 	 salary_min		numeric(8,2) check (salary_min > 29000),
 	 salary_max		numeric(8,2) check (salary_max < 1000000),
-	 descr			varchar(64),
-	 location		varchar(64),
+	 descr			varchar(1000),
+	 location		varchar(1000),
 	 visibility		varchar(64)
 	 	check (visibility in ('Y', 'N')),
 	 deptid			INT,

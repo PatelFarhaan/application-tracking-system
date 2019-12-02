@@ -28,7 +28,6 @@ def login():
         if admin_obj == None:
             return render_template('admin.html', warning='Email address does not exist!!!')
 
-
         admin_users_obj = Users.query.filter_by(emplid=admin_obj.emplid).first()
         if admin_obj is not None and check_password_hash(admin_users_obj.psw, admin_password):
             login_user(admin_obj)
