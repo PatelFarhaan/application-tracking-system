@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if warning %}
+<div class="alert alert-warning" role="alert" align="center">
+  {{warning}}
+</div>
+{% endif %}
+
+{% if user_name %}
+<h1>Welcome {{ user_name }}!!!</h1>
+{% endif %}
+
+<div class="jumbotron">
+  {% if total_job_count == 0 %}
+  <h2>NO JOBS POSTED YET</h2>
+
+  {% else %}
+  <table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th style="text-align:center" scope="col">Title</th>
+        <th style="text-align:center" scope="col">Description</th>
+        <th style="text-align:center" scope="col">Min Salary</th>
+        <th style="text-align:center" scope="col">Max Salary</th>
+        <th style="text-align:center" scope="col">Location</th>
+        <th style="text-align:center" scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in total_jobs.items %}
+      <tr>
+        <td style="text-align:center">{{ job.title }}</td>
+        <td style="text-align:center">{{ job.descr }}</td>
+        <td style="text-align:center">{{ job.salary_min }}</td>
+        <td style="text-align:center">{{ job.salary_max }}</td>
+        <td style="text-align:center">{{ job.location }}</td>
+        {% if job.jobid in job_id_list %}
+        <td style="text-align:center">{{ job_id_list[job.jobid] }}</td>
+        {% else %}
+        <td>
+          <form method="POST" align="center">
+            <input style="text-align:center" type="hidden" name="apply_job" value="{{job.jobid}}">
+            <input style="text-align:center" type="submit"
+              onclick="return confirm('Are you sure you want to apply for this job?')" value="Apply">
+          </form>
+        </td>
+
+        {% endif %}
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% for page_num in total_jobs.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if total_jobs.page == page_num %}
+      <li class="page-item disabled">
+        <a class="page-link" href="{{ url_for('users.applicant_view', page=page_num) }}">{{ page_num }}</a></li>
+      {% else %}
+      <li class="page-item"><a class="page-link"
+          href="{{ url_for('users.applicant_view', page=page_num) }}">{{ page_num }}</a></li>
+      {% endif %}
+      {% endfor %}
+  </nav>
+  {% endif %}
+</div>
+
+{% endblock %}
