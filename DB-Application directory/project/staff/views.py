@@ -1,7 +1,9 @@
 import json
 import datetime
+import threading
 from project import db
 from werkzeug.security import check_password_hash
+from project.staff.emails import email_sending_logic
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import render_template, request, Blueprint, redirect, url_for, session
 from project.models import Users, Employee, Job, Department, Application, Applicant, Resume
@@ -85,7 +87,6 @@ def staff_jobs_view_create():
                     if jobs.jobid == job_id:
                         user_obj = Applicant.query.filter_by(app_id=applicant_id).first()
                         resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
-                        print("asdasdasdasdsd", user_obj)
                         temp_dict = {}
                         temp_dict["job_id"] = job_id
                         temp_dict["job_title"] = jobs.title
@@ -160,6 +161,8 @@ def staff_jobs_view_create():
                 if action == '"hir"':
                     rejectOtherCandidates(res['job_id'], res['applicant_id'])
                     department_list, final_display_list = commonSaveLogic("Hired", res)
+                    email_thread = threading.Thread(target=email_send, args=(res['job_id'], res['applicant_id']))
+                    email_thread.start()
 
     return render_template('staff_jobs_view_create.html',
                            department_list=department_list,
@@ -173,9 +176,11 @@ def logout():
     session.clear()
     return redirect(url_for('staff.login'))
 
-
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
 def commonSaveLogic(new, res):
-    status_change_obj = Application.query.filter_by(jobid=res['jobid'], app_id=res['applicant_id']).first()
+    status_change_obj = Application.query.filter_by(jobid=res['job_id'], app_id=res['applicant_id']).first()
     status_change_obj.status = new
     db.session.commit()
     dept_names = Department.query.all()
@@ -187,10 +192,10 @@ def commonSaveLogic(new, res):
     if all_application_obj != []:
         for application in all_application_obj:
             application = application.__dict__
-            job_id = application['job_id']
+            job_id = application['jobid']
             applicant_id = application['app_id']
-            job_obj = Job.query.filter_by(id=job_id).first()
-            user_obj = Applicant.query.filter_by(id=applicant_id).first()
+            job_obj = Job.query.filter_by(jobid=job_id).first()
+            user_obj = Applicant.query.filter_by(app_id=applicant_id).first()
             resume_obj = Resume.query.filter_by(app_id=applicant_id).first()
             temp_dict = {}
             temp_dict["job_id"] = job_id
@@ -199,9 +204,8 @@ def commonSaveLogic(new, res):
             temp_dict["applicant_id"] = applicant_id
             temp_dict["user_resume"] = resume_obj.resume
             temp_dict["status"] = application["status"]
-            temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_date"], '%d %b %Y')
+            temp_dict["applied_date"] = datetime.datetime.strftime(application["appl_dt"], '%d %b %Y')
             final_display_list.append(temp_dict)
-
     return department_list, final_display_list
 
 
@@ -217,3 +221,10 @@ def rejectOtherCandidates(job_id, applicant_id):
             db.session.commit()
     except:
         db.session.rollback()
+
+
+def email_send(job_id, applicant_id):
+    applicant_obj = Applicant.query.filter_by(app_id=applicant_id).first()
+    job_obj = Job.query.filter_by(jobid=job_id).first()
+    resp = email_sending_logic(applicant_obj.name,job_obj.title, applicant_obj.emailid)
+    print(resp)

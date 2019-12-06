@@ -17,3 +17,176 @@
 2019-12-01 22:33:20,351 - werkzeug - INFO - 127.0.0.1 - - [01/Dec/2019 22:33:20] "GET /create-rc-hr-accounts HTTP/1.1" 200 -
 2019-12-01 22:33:33,277 - werkzeug - INFO - 127.0.0.1 - - [01/Dec/2019 22:33:33] "POST /create-rc-hr-accounts HTTP/1.1" 302 -
 2019-12-01 22:33:33,292 - werkzeug - INFO - 127.0.0.1 - - [01/Dec/2019 22:33:33] "GET /create-rc-hr-accounts HTTP/1.1" 200 -
+2019-12-03 22:06:40,611 - file - DEBUG - Debug FILE
+2019-12-03 22:06:40,617 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2019-12-03 22:06:40,618 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:06:41,029 - file - DEBUG - Debug FILE
+2019-12-03 22:06:41,032 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:06:41,039 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:06:57,158 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:06:57] "GET / HTTP/1.1" 200 -
+2019-12-03 22:06:57,247 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:06:57] "GET /favicon.ico HTTP/1.1" 404 -
+2019-12-03 22:08:21,028 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:21] "GET /register HTTP/1.1" 200 -
+2019-12-03 22:08:48,217 - s3transfer.utils - DEBUG - Acquiring 0
+2019-12-03 22:08:48,218 - s3transfer.tasks - DEBUG - UploadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x7f3984516b38>}) about to wait for the following futures []
+2019-12-03 22:08:48,218 - s3transfer.tasks - DEBUG - UploadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x7f3984516b38>}) done waiting for dependent futures
+2019-12-03 22:08:48,219 - s3transfer.tasks - DEBUG - Executing task UploadSubmissionTask(transfer_id=0, {'transfer_future': <s3transfer.futures.TransferFuture object at 0x7f3984516b38>}) with kwargs {'client': <botocore.client.S3 object at 0x7f398478c128>, 'config': <boto3.s3.transfer.TransferConfig object at 0x7f39845164a8>, 'osutil': <s3transfer.utils.OSUtils object at 0x7f3984516518>, 'request_executor': <s3transfer.futures.BoundedExecutor object at 0x7f39845166a0>, 'transfer_future': <s3transfer.futures.TransferFuture object at 0x7f3984516b38>}
+2019-12-03 22:08:48,219 - s3transfer.futures - DEBUG - Submitting task PutObjectTask(transfer_id=0, {'bucket': 'cmpe226-ats2', 'key': '2.png', 'extra_args': {'ACL': 'public-read'}}) to executor <s3transfer.futures.BoundedExecutor object at 0x7f39845166a0> for transfer request: 0.
+2019-12-03 22:08:48,219 - s3transfer.utils - DEBUG - Acquiring 0
+2019-12-03 22:08:48,219 - s3transfer.tasks - DEBUG - PutObjectTask(transfer_id=0, {'bucket': 'cmpe226-ats2', 'key': '2.png', 'extra_args': {'ACL': 'public-read'}}) about to wait for the following futures []
+2019-12-03 22:08:48,219 - s3transfer.utils - DEBUG - Releasing acquire 0/None
+2019-12-03 22:08:48,547 - s3transfer.tasks - DEBUG - PutObjectTask(transfer_id=0, {'bucket': 'cmpe226-ats2', 'key': '2.png', 'extra_args': {'ACL': 'public-read'}}) done waiting for dependent futures
+2019-12-03 22:08:48,548 - s3transfer.tasks - DEBUG - Executing task PutObjectTask(transfer_id=0, {'bucket': 'cmpe226-ats2', 'key': '2.png', 'extra_args': {'ACL': 'public-read'}}) with kwargs {'client': <botocore.client.S3 object at 0x7f398478c128>, 'fileobj': <s3transfer.utils.ReadFileChunk object at 0x7f3984516da0>, 'bucket': 'cmpe226-ats2', 'key': '2.png', 'extra_args': {'ACL': 'public-read'}}
+2019-12-03 22:08:48,975 - s3transfer.utils - DEBUG - Releasing acquire 0/None
+2019-12-03 22:08:49,015 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:49] "POST /register HTTP/1.1" 302 -
+2019-12-03 22:08:49,044 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:49] "GET /login HTTP/1.1" 200 -
+2019-12-03 22:08:50,943 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:50] "GET /login HTTP/1.1" 200 -
+2019-12-03 22:08:54,316 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:54] "POST /login HTTP/1.1" 302 -
+2019-12-03 22:08:54,336 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:54] "GET /applicant-view HTTP/1.1" 200 -
+2019-12-03 22:08:56,660 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:56] "POST /applicant-view HTTP/1.1" 302 -
+2019-12-03 22:08:56,672 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:08:56] "GET /applicant-view HTTP/1.1" 200 -
+2019-12-03 22:09:00,116 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:00] "GET /logout HTTP/1.1" 302 -
+2019-12-03 22:09:00,139 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:00] "GET /login HTTP/1.1" 200 -
+2019-12-03 22:09:11,404 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:11] "GET /staff-login HTTP/1.1" 200 -
+2019-12-03 22:09:41,852 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:41] "POST /staff-login HTTP/1.1" 302 -
+2019-12-03 22:09:41,881 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:41] "GET /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:09:52,676 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:52] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:09:52,706 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:52] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:09:52,706 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:52] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:09:52,706 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:52] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:09:52,735 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:52] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:09:52,845 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:09:52] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:10:40,992 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:10:41,100 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:10:41,573 - file - DEBUG - Debug FILE
+2019-12-03 22:10:41,577 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:10:41,578 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:10:44,505 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:44] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:10:44,531 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:44] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:10:44,532 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:44] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:10:44,532 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:44] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:10:44,656 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:44] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:10:58,041 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:10:58,137 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:10:58,563 - file - DEBUG - Debug FILE
+2019-12-03 22:10:58,567 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:10:58,567 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:10:59,176 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:59] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:10:59,201 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:59] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:10:59,203 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:59] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:10:59,203 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:59] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:10:59,321 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:10:59] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:12:49,963 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:12:50,046 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:12:50,465 - file - DEBUG - Debug FILE
+2019-12-03 22:12:50,469 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:12:50,469 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:12:51,034 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:12:51] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:12:51,060 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:12:51] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:12:51,061 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:12:51] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:12:51,061 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:12:51] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:12:51,180 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:12:51] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:13:09,411 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:13:09,557 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:13:10,141 - file - DEBUG - Debug FILE
+2019-12-03 22:13:10,145 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:13:10,145 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:13:18,135 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:13:18] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:13:18,161 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:13:18] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:13:18,161 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:13:18] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:13:18,162 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:13:18] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:13:18,278 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:13:18] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:14:45,057 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:14:45,152 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:14:45,633 - file - DEBUG - Debug FILE
+2019-12-03 22:14:45,638 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:14:45,639 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:14:47,240 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:14:47] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:14:47,268 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:14:47] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:14:47,269 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:14:47] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:14:47,269 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:14:47] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:14:47,394 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:14:47] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:15:21,667 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:15:21,751 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:15:22,175 - file - DEBUG - Debug FILE
+2019-12-03 22:15:22,180 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:15:22,180 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:15:22,834 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:15:22] "POST /staff-jobs-view-create HTTP/1.1" 500 -
+2019-12-03 22:15:22,858 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:15:22] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2019-12-03 22:15:22,860 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:15:22] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+2019-12-03 22:15:22,860 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:15:22] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2019-12-03 22:15:22,977 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:15:22] "GET /staff-jobs-view-create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2019-12-03 22:15:29,371 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:15:29,475 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:15:29,911 - file - DEBUG - Debug FILE
+2019-12-03 22:15:29,915 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:15:29,915 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:15:30,585 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:15:30] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:16:38,631 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:16:38,718 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:16:39,171 - file - DEBUG - Debug FILE
+2019-12-03 22:16:39,174 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:16:39,175 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:16:41,387 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:16:41] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:17:04,908 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:17:04,993 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:17:05,450 - file - DEBUG - Debug FILE
+2019-12-03 22:17:05,453 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:17:05,454 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:17:08,939 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:17:08] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:17:15,493 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:17:15] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:17:22,151 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:17:22] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:17:30,523 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:17:30] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:17:34,416 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:17:34] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:17:38,283 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:17:38] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:18:20,502 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:18:20,589 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:18:21,202 - file - DEBUG - Debug FILE
+2019-12-03 22:18:21,206 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:18:21,206 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:18:30,246 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:18:30] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:18:37,506 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:18:37,602 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:18:38,043 - file - DEBUG - Debug FILE
+2019-12-03 22:18:38,047 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:18:38,047 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:18:38,428 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:18:38] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:19:09,899 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:19:09,991 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:19:10,483 - file - DEBUG - Debug FILE
+2019-12-03 22:19:10,486 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:19:10,487 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:19:12,478 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:19:12] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:19:29,324 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:19:29] "GET /logout HTTP/1.1" 302 -
+2019-12-03 22:19:29,379 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:19:29] "GET /login HTTP/1.1" 200 -
+2019-12-03 22:21:34,541 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/views.py', reloading
+2019-12-03 22:21:34,644 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:21:35,093 - file - DEBUG - Debug FILE
+2019-12-03 22:21:35,097 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:21:35,098 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:23:04,856 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:04] "GET / HTTP/1.1" 200 -
+2019-12-03 22:23:40,789 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:40] "GET /login HTTP/1.1" 200 -
+2019-12-03 22:23:40,928 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:40] "GET /favicon.ico HTTP/1.1" 404 -
+2019-12-03 22:23:43,137 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:43] "GET /staff-login HTTP/1.1" 200 -
+2019-12-03 22:23:47,392 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:47] "POST /staff-login HTTP/1.1" 302 -
+2019-12-03 22:23:47,416 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:47] "GET /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:23:51,187 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:23:51] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:24:39,606 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/emails.py', reloading
+2019-12-03 22:24:39,702 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:24:40,188 - file - DEBUG - Debug FILE
+2019-12-03 22:24:40,191 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:24:40,192 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:24:42,475 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:24:42] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:25:00,748 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/emails.py', reloading
+2019-12-03 22:25:00,830 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:25:01,314 - file - DEBUG - Debug FILE
+2019-12-03 22:25:01,319 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:25:01,319 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:25:04,634 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:25:04] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:25:33,586 - werkzeug - INFO -  * Detected change in '/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/DB-Application directory/project/staff/emails.py', reloading
+2019-12-03 22:25:33,669 - werkzeug - INFO -  * Restarting with stat
+2019-12-03 22:25:34,092 - file - DEBUG - Debug FILE
+2019-12-03 22:25:34,095 - werkzeug - WARNING -  * Debugger is active!
+2019-12-03 22:25:34,096 - werkzeug - INFO -  * Debugger PIN: 242-514-371
+2019-12-03 22:25:37,408 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:25:37] "POST /staff-jobs-view-create HTTP/1.1" 200 -
+2019-12-03 22:27:21,746 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:27:21] "GET /logout HTTP/1.1" 302 -
+2019-12-03 22:27:21,778 - werkzeug - INFO - 127.0.0.1 - - [03/Dec/2019 22:27:21] "GET /login HTTP/1.1" 200 -

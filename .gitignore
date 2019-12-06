@@ -3,4 +3,6 @@ __pycache__
 /__pycache__
 migrations
 test.py
-
+logging.log
+/logging.log
+DB-Application directory/logging.log
