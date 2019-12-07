@@ -1,2 +1,54 @@
 [07-Dec-19 12:21:46] WARNING in _internal:  * Debugger is active!
 [07-Dec-19 12:21:46] INFO in _internal:  * Debugger PIN: 242-514-371
+[07-Dec-19 22:22:16] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[07-Dec-19 22:22:16] INFO in _internal:  * Restarting with stat
+[07-Dec-19 22:22:17] WARNING in _internal:  * Debugger is active!
+[07-Dec-19 22:22:17] INFO in _internal:  * Debugger PIN: 326-217-879
+[07-Dec-19 22:25:39] INFO in create_admin: Engineering Department Created
+[07-Dec-19 22:25:39] INFO in create_admin: Finance Department Created
+[07-Dec-19 22:25:39] INFO in create_admin: First Admin User Created
+[07-Dec-19 22:25:39] INFO in create_admin: Second Admin User Created
+[07-Dec-19 22:25:45] INFO in pre_populate_script: Hiring Manager 1 Created
+[07-Dec-19 22:25:45] INFO in pre_populate_script: Recruiter Created
+[07-Dec-19 22:25:45] INFO in pre_populate_script: Job 1 Created
+[07-Dec-19 22:25:45] INFO in pre_populate_script: Job 2 Created
+[07-Dec-19 22:25:45] INFO in pre_populate_script: Job 3 Created
+[07-Dec-19 22:26:52] INFO in _internal:  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+[07-Dec-19 22:26:52] INFO in _internal:  * Restarting with stat
+[07-Dec-19 22:26:53] WARNING in _internal:  * Debugger is active!
+[07-Dec-19 22:26:53] INFO in _internal:  * Debugger PIN: 326-217-879
+[07-Dec-19 22:27:26] INFO in _internal: 71.202.17.154 - - [07/Dec/2019 22:27:26] "GET / HTTP/1.1" 200 -
+[07-Dec-19 22:27:26] INFO in handler: Page Not Found
+[07-Dec-19 22:27:26] INFO in _internal: 71.202.17.154 - - [07/Dec/2019 22:27:26] "GET /favicon.ico HTTP/1.1" 404 -
+[07-Dec-19 22:28:07] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:28:07] "GET / HTTP/1.1" 200 -
+[07-Dec-19 22:28:08] INFO in handler: Page Not Found
+[07-Dec-19 22:28:08] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:28:08] "GET /favicon.ico HTTP/1.1" 404 -
+[07-Dec-19 22:28:37] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:28:37] "GET /login HTTP/1.1" 200 -
+[07-Dec-19 22:28:58] INFO in _internal: 81.26.137.97 - - [07/Dec/2019 22:28:58] "GET / HTTP/1.1" 200 -
+[07-Dec-19 22:29:07] DEBUG in views: Applicant marianne.paulson@sjsu.edu Does Not Exist
+[07-Dec-19 22:29:07] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:07] "POST /login HTTP/1.1" 200 -
+[07-Dec-19 22:29:14] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:14] "GET /login HTTP/1.1" 200 -
+[07-Dec-19 22:29:19] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:19] "GET / HTTP/1.1" 200 -
+[07-Dec-19 22:29:21] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:21] "GET /login HTTP/1.1" 200 -
+[07-Dec-19 22:29:23] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:23] "GET /admin-view HTTP/1.1" 200 -
+[07-Dec-19 22:29:27] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:27] "GET /staff-login HTTP/1.1" 200 -
+[07-Dec-19 22:29:32] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:29:32] "GET /register HTTP/1.1" 200 -
+[07-Dec-19 22:31:00] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:31:00] "GET /register HTTP/1.1" 200 -
+[07-Dec-19 22:31:01] INFO in _internal: 71.202.17.154 - - [07/Dec/2019 22:31:01] "GET /register HTTP/1.1" 200 -
+[07-Dec-19 22:31:09] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:31:09] "GET /staff-login HTTP/1.1" 200 -
+[07-Dec-19 22:31:28] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:31:28] "GET /admin-view HTTP/1.1" 200 -
+[07-Dec-19 22:31:31] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:31:31] "GET /login HTTP/1.1" 200 -
+[07-Dec-19 22:31:50] INFO in _internal: 71.202.17.154 - - [07/Dec/2019 22:31:50] "GET /register HTTP/1.1" 200 -
+[07-Dec-19 22:31:59] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:31:59] "GET /login HTTP/1.1" 200 -
+[07-Dec-19 22:32:02] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:32:02] "GET /staff-login HTTP/1.1" 200 -
+[07-Dec-19 22:32:04] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:32:04] "GET /staff-login HTTP/1.1" 200 -
+[07-Dec-19 22:32:54] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:32:54] "GET /staff-login HTTP/1.1" 200 -
+[07-Dec-19 22:33:00] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:33:00] "GET /login HTTP/1.1" 200 -
+[07-Dec-19 22:34:23] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:34:23] "GET /admin-view HTTP/1.1" 200 -
+[07-Dec-19 22:34:39] DEBUG in views: marianne.paulson@sjsu.edu Logged In
+[07-Dec-19 22:34:39] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:34:39] "POST /admin-view HTTP/1.1" 302 -
+[07-Dec-19 22:34:39] INFO in _internal: 173.13.149.158 - - [07/Dec/2019 22:34:39] "GET /create-rc-hr-accounts HTTP/1.1" 200 -
+[07-Dec-19 22:37:56] INFO in _internal:  * Detected change in '/home/ubuntu/application_tracking_system/DB-Application directory/app.py', reloading
+[07-Dec-19 22:37:56] INFO in _internal:  * Restarting with stat
+[07-Dec-19 22:37:57] WARNING in _internal:  * Debugger is active!
+[07-Dec-19 22:37:57] INFO in _internal:  * Debugger PIN: 326-217-879

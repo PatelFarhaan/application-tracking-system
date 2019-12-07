@@ -6,3 +6,5 @@ test.py
 logging.log
 /logging.log
 DB-Application directory/logging.log
+LOG/*
+app.log
