@@ -6,14 +6,24 @@ from project import db, app
 from werkzeug.security import generate_password_hash
 from project.models import Users, Department, Employee
 
+
+########################################################################################################################
+import logging
+logging.basicConfig(format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+                        filename='/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/LOG/app.log',
+                        datefmt='%d-%b-%y %H:%M:%S',
+                        level=logging.DEBUG,
+                        filemode='a')
+########################################################################################################################
+
 ########################################################################################################################
 dept_obj = Department(name='Engineering')
 dept_obj1 = Department(name='Finance')
 db.session.add(dept_obj)
 db.session.add(dept_obj1)
 db.session.commit()
-app.logger.info('Engineering Department Created')
-app.logger.info('Finance Department Created')
+logging.info('Engineering Department Created')
+logging.info('Finance Department Created')
 
 ########################################################################################################################
 emp_obj = Employee(salary=100000,
@@ -24,7 +34,7 @@ emp_obj = Employee(salary=100000,
                    deptid=1)
 db.session.add(emp_obj)
 db.session.commit()
-app.logger.info('First Admin User Created')
+logging.info('First Admin User Created')
 
 
 emp_obj2 = Employee(salary=150000,
@@ -35,7 +45,7 @@ emp_obj2 = Employee(salary=150000,
                     deptid=1)
 db.session.add(emp_obj2)
 db.session.commit()
-app.logger.info('Second Admin User Created')
+logging.info('Second Admin User Created')
 
 
 ########################################################################################################################

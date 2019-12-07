@@ -3,11 +3,18 @@ sys.path.append('../../')
 
 
 import datetime
-from project import db, app
+from project import db
 from project.models import Job, Employee, Users
 from werkzeug.security import generate_password_hash
 
-
+########################################################################################################################
+import logging
+logging.basicConfig(format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+                        filename='/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/LOG/app.log',
+                        datefmt='%d-%b-%y %H:%M:%S',
+                        level=logging.DEBUG,
+                        filemode='a')
+########################################################################################################################
 
 ########################################################################################################################
 new_emp_obj = Employee(name='Hiring Manager 1',
@@ -18,7 +25,7 @@ new_emp_obj = Employee(name='Hiring Manager 1',
                        hire_dt=datetime.date.today())
 db.session.add(new_emp_obj)
 db.session.commit()
-app.logger.info('Hiring Manager 1 Created')
+logging.info('Hiring Manager 1 Created')
 
 
 emp_obj = Employee.query.filter_by(email='hiringmanager1@gmail.com').first()
@@ -37,7 +44,7 @@ new_emp_obj = Employee(name='Recruiter',
                        hire_dt=datetime.date.today())
 db.session.add(new_emp_obj)
 db.session.commit()
-app.logger.info('Recruiter Created')
+logging.info('Recruiter Created')
 
 
 emp_obj = Employee.query.filter_by(email='recruiter1@gmail.com').first()
@@ -59,7 +66,7 @@ jobs_obj = Job(title='Job Title 1',
                deptid=2)
 db.session.add(jobs_obj)
 db.session.commit()
-app.logger.info('Job 1 Created')
+logging.info('Job 1 Created')
 
 
 jobs_obj = Job(title='Job Title 2',
@@ -73,7 +80,7 @@ jobs_obj = Job(title='Job Title 2',
                deptid=1)
 db.session.add(jobs_obj)
 db.session.commit()
-app.logger.info('Job 2 Created')
+logging.info('Job 2 Created')
 
 
 jobs_obj = Job(title='Job Title 3',
@@ -87,7 +94,7 @@ jobs_obj = Job(title='Job Title 3',
                deptid=2)
 db.session.add(jobs_obj)
 db.session.commit()
-app.logger.info('Job 3 Created')
+logging.info('Job 3 Created')
 ########################################################################################################################
 
 print("Hiring Manager Created Successfully!!!")

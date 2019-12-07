@@ -1,7 +1,15 @@
 import smtplib
-from project import app
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+########################################################################################################################
+import logging
+logging.basicConfig(format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+                        filename='/media/farhaan/New Volume/Masters/CMPE226_TEAM1_SOURCES/LOG/app.log',
+                        datefmt='%d-%b-%y %H:%M:%S',
+                        level=logging.DEBUG,
+                        filemode='a')
+########################################################################################################################
 
 
 def email_sending_logic(name, job_name, email):
@@ -73,8 +81,8 @@ def email_sending_logic(name, job_name, email):
         text = message.as_string()
         session.sendmail(sender_address, receiver_address, text)
         session.quit()
-        app.logger.debug('Job confirmation email sent to {name}'.format(name=name))
+        logging.debug('Job confirmation email sent to {name}'.format(name=name))
         return True
     except:
-        app.logger.debug('Job confirmation email sending failed to {name}'.format(name=name))
+        logging.debug('Job confirmation email sending failed to {name}'.format(name=name))
         return False
