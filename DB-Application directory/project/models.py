@@ -109,7 +109,7 @@ class Job(db.Model):
     location = db.Column(db.String(64))
     descr = db.Column(db.Text)
     status = db.Column(db.String(64), nullable=False)
-    visibility = db.Column(db.Boolean, default=False, nullable=False)
+    visibility = db.Column(db.String, nullable=False)
     deptid = db.Column(db.Integer, db.ForeignKey('department.deptid'), nullable=False)
 ########################################################################################################################
 
