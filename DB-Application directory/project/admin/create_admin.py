@@ -2,7 +2,7 @@ import sys
 sys.path.append('../../')
 
 import datetime
-from project import db
+from project import db, app
 from werkzeug.security import generate_password_hash
 from project.models import Users, Department, Employee
 
@@ -12,6 +12,8 @@ dept_obj1 = Department(name='Finance')
 db.session.add(dept_obj)
 db.session.add(dept_obj1)
 db.session.commit()
+app.logger.info('Engineering Department Created')
+app.logger.info('Finance Department Created')
 
 ########################################################################################################################
 emp_obj = Employee(salary=100000,
@@ -22,6 +24,8 @@ emp_obj = Employee(salary=100000,
                    deptid=1)
 db.session.add(emp_obj)
 db.session.commit()
+app.logger.info('First Admin User Created')
+
 
 emp_obj2 = Employee(salary=150000,
                     hire_dt=datetime.datetime.strptime('2019-03-13', '%Y-%m-%d'),
@@ -31,6 +35,8 @@ emp_obj2 = Employee(salary=150000,
                     deptid=1)
 db.session.add(emp_obj2)
 db.session.commit()
+app.logger.info('Second Admin User Created')
+
 
 ########################################################################################################################
 admin_obj = Users(type='Administrator',

@@ -1,7 +1,7 @@
 import json
 import datetime
 import threading
-from project import db
+from project import db, app
 from werkzeug.security import check_password_hash
 from project.staff.emails import email_sending_logic
 from flask_login import login_required, login_user, logout_user, current_user
@@ -31,6 +31,7 @@ def login():
 
         staff_users_obj = Users.query.filter_by(emplid=staff_obj.emplid).first()
         if staff_obj is not None and check_password_hash(staff_users_obj.psw, staff_password):
+            app.logger.debug('{} User Logged In'.format(name=staff_obj.name))
             login_user(staff_obj)
             return redirect(url_for('staff.staff_jobs_view_create'))
     return render_template('staff_login.html')
@@ -137,6 +138,7 @@ def staff_jobs_view_create():
                               open_dt=datetime.date.today())
             db.session.add(new_job_obj)
             db.session.commit()
+            app.logger.debug('New Job {title} Created'.format(title=title))
             return redirect(url_for('staff.staff_jobs_view_create'))
         else:
             if request.method == 'POST':
@@ -147,18 +149,33 @@ def staff_jobs_view_create():
                 res = json.loads(ap)
 
                 if action == '"rev"':
+                    app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    app.logger.debug('{aname} Reviewed for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Reviewed", res)
 
                 if action == '"rej"':
+                    app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    app.logger.debug('{aname} Rejected for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Rejected", res)
 
                 if action == '"int"':
+                    app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    app.logger.debug('{aname} Interviewed for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Interviewed", res)
 
                 if action == '"off"':
+                    app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    app.logger.debug('{aname} Offered for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Offer", res)
 
                 if action == '"hir"':
+                    app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    app.logger.debug('{aname} Hired for Job {jname}'.format(aname=app_name, jname=job_name))
                     rejectOtherCandidates(res['job_id'], res['applicant_id'])
                     department_list, final_display_list = commonSaveLogic("Hired", res)
                     email_thread = threading.Thread(target=email_send, args=(res['job_id'], res['applicant_id']))

@@ -26,11 +26,13 @@ def login():
         admin_obj = Employee.query.filter_by(email=admin_email).first()
 
         if admin_obj == None:
+            app.logger.debug('{admin} does not exist'.format(admin=admin_email))
             return render_template('admin.html', warning='Email address does not exist!!!')
 
         admin_users_obj = Users.query.filter_by(emplid=admin_obj.emplid).first()
         if admin_obj is not None and check_password_hash(admin_users_obj.psw, admin_password):
             login_user(admin_obj)
+            app.logger.debug('{admin} Logged In'.format(admin_email))
             return redirect(url_for('admin.create_rc_hr_accounts'))
     return render_template ('admin.html')
 
@@ -77,6 +79,7 @@ def create_rc_hr_accounts():
                                hire_dt=datetime.date.today())
         db.session.add(new_emp_obj)
         db.session.commit()
+        app.logger.debug('New employee {name} created'.format(name=name))
 
         emp_obj = Employee.query.filter_by(email=email).first()
         emp_user_obj = Users(emplid=emp_obj.emplid,

@@ -3,7 +3,7 @@ sys.path.append('../../')
 
 
 import datetime
-from project import db
+from project import db, app
 from project.models import Job, Employee, Users
 from werkzeug.security import generate_password_hash
 
@@ -18,6 +18,8 @@ new_emp_obj = Employee(name='Hiring Manager 1',
                        hire_dt=datetime.date.today())
 db.session.add(new_emp_obj)
 db.session.commit()
+app.logger.info('Hiring Manager 1 Created')
+
 
 emp_obj = Employee.query.filter_by(email='hiringmanager1@gmail.com').first()
 emp_user_obj = Users(emplid=emp_obj.emplid,
@@ -35,6 +37,8 @@ new_emp_obj = Employee(name='Recruiter',
                        hire_dt=datetime.date.today())
 db.session.add(new_emp_obj)
 db.session.commit()
+app.logger.info('Recruiter Created')
+
 
 emp_obj = Employee.query.filter_by(email='recruiter1@gmail.com').first()
 emp_user_obj = Users(emplid=emp_obj.emplid,
@@ -55,6 +59,8 @@ jobs_obj = Job(title='Job Title 1',
                deptid=2)
 db.session.add(jobs_obj)
 db.session.commit()
+app.logger.info('Job 1 Created')
+
 
 jobs_obj = Job(title='Job Title 2',
                salary_min=35000,
@@ -67,6 +73,8 @@ jobs_obj = Job(title='Job Title 2',
                deptid=1)
 db.session.add(jobs_obj)
 db.session.commit()
+app.logger.info('Job 2 Created')
+
 
 jobs_obj = Job(title='Job Title 3',
                salary_min=50000,
@@ -79,6 +87,7 @@ jobs_obj = Job(title='Job Title 3',
                deptid=2)
 db.session.add(jobs_obj)
 db.session.commit()
+app.logger.info('Job 3 Created')
 ########################################################################################################################
 
 print("Hiring Manager Created Successfully!!!")
