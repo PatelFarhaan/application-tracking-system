@@ -1,7 +1,6 @@
 import sys
 sys.path.append('../../')
 
-
 import datetime
 from project import db
 from werkzeug.security import generate_password_hash
@@ -34,7 +33,7 @@ db.session.add(emp_obj2)
 db.session.commit()
 
 ########################################################################################################################
-admin_obj = Users(type='admin',
+admin_obj = Users(type='Administrator',
                   psw=generate_password_hash('***REMOVED***'),
                   emplid=1,
                   deptid=1)
@@ -42,7 +41,7 @@ db.session.add(admin_obj)
 db.session.commit()
 
 
-admin_obj2 = Users(type='admin',
+admin_obj2 = Users(type='Administrator',
                    psw=generate_password_hash('marianne'),
                    emplid=2,
                    deptid=1)

@@ -67,11 +67,11 @@ create table job
 	 	check (status in ('Open', 'Closed', 'Cancelled')), 
 	 title			varchar(1000),
 	 salary_min		numeric(8,2) check (salary_min > 29000),
-	 salary_max		numeric(8,2) check (salary_max < 1000000),
+	 salary_max		numeric(8,2) check (salary_max < 100000),
 	 descr			varchar(1000),
 	 location		varchar(1000),
 	 visibility		varchar(64)
-	 	check (visibility in ('Y', 'N')),
+	 	check (visibility in ('Yes', 'No')),
 	 deptid			INT,
 	 primary key (jobid),
 	 foreign key (deptid) references department(deptid)
