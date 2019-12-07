@@ -1,5 +1,5 @@
 import datetime
-from project import db
+from project import db, app
 from project.models import Users, Employee, Department
 from flask_login import login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -9,7 +9,7 @@ from flask import render_template, request, Blueprint, redirect, url_for, sessio
 ########################################################################################################################
 import logging
 logging.basicConfig(format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-                        filename='/home/ubuntu/application_tracking_system/LOG/app.log',
+                        filename=app.config['LOG_PATH'],
                         datefmt='%d-%b-%y %H:%M:%S',
                         level=logging.DEBUG,
                         filemode='a')

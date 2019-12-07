@@ -1,7 +1,7 @@
 import json
 import datetime
 import threading
-from project import db
+from project import db, app
 from werkzeug.security import check_password_hash
 from project.staff.emails import email_sending_logic
 from flask_login import login_required, login_user, logout_user, current_user
@@ -12,7 +12,7 @@ from project.models import Users, Employee, Job, Department, Application, Applic
 ########################################################################################################################
 import logging
 logging.basicConfig(format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-                        filename='/home/ubuntu/application_tracking_system/LOG/app.log',
+                        filename=app.config['LOG_PATH'],
                         datefmt='%d-%b-%y %H:%M:%S',
                         level=logging.DEBUG,
                         filemode='a')
@@ -159,31 +159,31 @@ def staff_jobs_view_create():
 
                 if action == '"rev"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
-                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Reviewed for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Reviewed", res)
 
                 if action == '"rej"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
-                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Rejected for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Rejected", res)
 
                 if action == '"int"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
-                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Interviewed for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Interviewed", res)
 
                 if action == '"off"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
-                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Offered for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Offer", res)
 
                 if action == '"hir"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
-                    job_name = Job.query.filter_by(jobid=res['job_id']).first().name
+                    job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Hired for Job {jname}'.format(aname=app_name, jname=job_name))
                     rejectOtherCandidates(res['job_id'], res['applicant_id'])
                     department_list, final_display_list = commonSaveLogic("Hired", res)
