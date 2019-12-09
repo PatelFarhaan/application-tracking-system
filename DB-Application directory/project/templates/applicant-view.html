@@ -29,6 +29,7 @@
     </thead>
     <tbody>
       {% for job in total_jobs.items %}
+      {% if job.visibility == '1' %}
       <tr>
         <td style="text-align:center">{{ job.title }}</td>
         <td style="text-align:center">{{ job.descr }}</td>
@@ -45,7 +46,7 @@
               onclick="return confirm('Are you sure you want to apply for this job?')" value="Apply">
           </form>
         </td>
-
+        {% endif %}
         {% endif %}
 
       </tr>

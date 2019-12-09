@@ -81,7 +81,7 @@ jobs_obj = Job(title='Job Title 1',
                location='New York',
                descr='Job Description 1',
                status='Open',
-               visibility='Yes',
+               visibility=1,
                deptid=2)
 db.session.add(jobs_obj)
 db.session.commit()
@@ -95,7 +95,7 @@ jobs_obj = Job(title='Job Title 2',
                location='California',
                descr='Job Description 2',
                status='Open',
-               visibility='Yes',
+               visibility=1,
                deptid=1)
 db.session.add(jobs_obj)
 db.session.commit()
@@ -109,7 +109,7 @@ jobs_obj = Job(title='Job Title 3',
                location='Boston',
                descr='Job Description 3',
                status='Open',
-               visibility='Yes',
+               visibility=1,
                deptid=2)
 db.session.add(jobs_obj)
 db.session.commit()

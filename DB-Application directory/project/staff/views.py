@@ -120,9 +120,9 @@ def staff_jobs_view_create():
             department = request.form.get('department', None)
 
             if visibility == 'visible':
-                visibility = True
+                visibility = '1'
             else:
-                visibility = False
+                visibility = '0'
 
             dept_obj = Department.query.filter_by(name=department).first()
 
@@ -241,14 +241,16 @@ def commonSaveLogic(new, res):
 def rejectOtherCandidates(job_id, applicant_id):
     try:
         filter_list = Application.query.filter_by(jobid=job_id).all()
-        filter_list = list(i.__dict__ for i in filter_list if i.__dict__['app_id'] != applicant_id)
-        for j in filter_list:
-            app_id = j['app_id']
-            job_id = j['job_id']
+        new_filter_list = [i.__dict__ for i in filter_list if i.__dict__['app_id'] != applicant_id]
+
+        for k in new_filter_list:
+            app_id = k['app_id']
+            job_id = k['jobid']
             app_status_obj = Application.query.filter_by(app_id=app_id, jobid=job_id).first()
             app_status_obj.status = 'Rejected'
-            db.session.commit()
+        db.session.commit()
     except:
+        print("farhaan")
         db.session.rollback()
 
 
