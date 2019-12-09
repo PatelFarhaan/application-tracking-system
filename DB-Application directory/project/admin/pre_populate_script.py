@@ -36,6 +36,25 @@ emp_user_obj = Users(emplid=emp_obj.emplid,
 db.session.add(emp_user_obj)
 db.session.commit()
 
+new_emp_obj = Employee(name='Hiring Manager 2',
+                       email='hiringmanager2@gmail.com',
+                       salary=60000,
+                       status='Active',
+                       deptid=2,
+                       hire_dt=datetime.date.today())
+db.session.add(new_emp_obj)
+db.session.commit()
+logging.info('Hiring Manager 2 Created')
+
+
+emp_obj = Employee.query.filter_by(email='hiringmanager2@gmail.com').first()
+emp_user_obj = Users(emplid=emp_obj.emplid,
+                     deptid=2,
+                     type='Hiring Manager',
+                     psw=generate_password_hash('hr2'))
+db.session.add(emp_user_obj)
+db.session.commit()
+
 new_emp_obj = Employee(name='Recruiter',
                        email='recruiter1@gmail.com',
                        salary=50000,

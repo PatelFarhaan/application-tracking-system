@@ -3,10 +3,10 @@ import datetime
 import threading
 from project import db, app
 from werkzeug.security import check_password_hash
-from project.staff.emails import email_sending_logic
 from flask_login import login_required, login_user, logout_user, current_user
 from flask import render_template, request, Blueprint, redirect, url_for, session
 from project.models import Users, Employee, Job, Department, Application, Applicant, Resume
+from project.staff.emails import email_sending_logic, email_sending_logic_interview, email_sending_logic_offer
 
 
 ########################################################################################################################
@@ -63,7 +63,6 @@ def staff_jobs_view_create():
 
         if all_application_obj != []:
             for application in all_application_obj:
-                print(application.__dict__)
                 application = application.__dict__
                 job_id = application['jobid']
                 applicant_id = application['app_id']
@@ -85,7 +84,7 @@ def staff_jobs_view_create():
         final_display_list = []
 
         all_application_obj = Application.query.all()
-        list_of_jobs = Job.query.filter_by(deptid=1).all()
+        list_of_jobs = Job.query.filter_by(deptid=current_emp_obj.__dict__['deptid']).all()
 
         if all_application_obj != []:
             for application in all_application_obj:
@@ -174,12 +173,16 @@ def staff_jobs_view_create():
                     job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Interviewed for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Interviewed", res)
+                    email_thread = threading.Thread(target=email_sending_logic_interview, args=(res['job_id'], res['applicant_id']))
+                    email_thread.start()
 
                 if action == '"off"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
                     job_name = Job.query.filter_by(jobid=res['job_id']).first().title
                     logging.debug('{aname} Offered for Job {jname}'.format(aname=app_name, jname=job_name))
                     department_list, final_display_list = commonSaveLogic("Offer", res)
+                    email_thread = threading.Thread(target=email_sending_logic_offer, args=(res['job_id'], res['applicant_id']))
+                    email_thread.start()
 
                 if action == '"hir"':
                     app_name = Applicant.query.filter_by(app_id=res['applicant_id']).first().name
@@ -253,4 +256,16 @@ def email_send(job_id, applicant_id):
     applicant_obj = Applicant.query.filter_by(app_id=applicant_id).first()
     job_obj = Job.query.filter_by(jobid=job_id).first()
     resp = email_sending_logic(applicant_obj.name,job_obj.title, applicant_obj.emailid)
+    print(resp)
+
+def email_send_offer(job_id, applicant_id):
+    applicant_obj = Applicant.query.filter_by(app_id=applicant_id).first()
+    job_obj = Job.query.filter_by(jobid=job_id).first()
+    resp = email_sending_logic_offer(applicant_obj.name, job_obj.title, applicant_obj.emailid)
+    print(resp)
+
+def email_send_interview(job_id, applicant_id):
+    applicant_obj = Applicant.query.filter_by(app_id=applicant_id).first()
+    job_obj = Job.query.filter_by(jobid=job_id).first()
+    resp = email_sending_logic_interview(applicant_obj.name,job_obj.title, applicant_obj.emailid)
     print(resp)
