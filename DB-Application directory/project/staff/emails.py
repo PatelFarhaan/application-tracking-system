@@ -127,7 +127,7 @@ def email_sending_logic_offer(name, job_name, email):
                             </div>
                                 <div class="jumbotron">
                                     <h2>Hello {name},</h2>
-                                    <h3>You have been selected for the job "{job_name}."</h3>
+                                    <h3>You have been offered the job "{job_name}."</h3>
                                     <br>
                                     <br>
 
@@ -207,7 +207,7 @@ def email_sending_logic_interview(name, job_name, email):
                             </div>
                                 <div class="jumbotron">
                                     <h2>Hello {name},</h2>
-                                    <h3>You have been selected for the job "{job_name}."</h3>
+                                    <h3>You have been selected for the interview of the job "{job_name}."</h3>
                                     <br>
                                     <br>
 
